@@ -1,0 +1,26 @@
+version: '3.6'
+
+services:
+
+  uschedule.api:
+    image: uschedule/uschedule.api:${TAG:-latest}
+    build:
+      context: src
+      dockerfile: USchedule.API/Dockerfile    
+    environment:
+      - ASPNETCORE_ENVIRONMENT="DEVELOPMENT"
+      - ASPNETCORE_URLS=http://*:5000
+      - ConnectionStrings__USchedule=Server=lpschedule-api_db_1;Database=uschedule;User Id=uschedule;Password=uschedule
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+  db: 
+    image: postgres
+    environment:
+      - POSTGRES_USER=uschedule
+      - POSTGRES_PASSWORD=uschedule     
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"

@@ -20,5 +20,26 @@ namespace USchedule.API
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
+        
+        public static IWebHost BuildWebHost(string[] args)
+        {
+            var configBuild = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("hosting.json")
+                .AddCommandLine(args)
+                .Build();
+            return new WebHostBuilder()
+                .UseKestrel()
+                .UseConfiguration(configBuild)
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.AddJsonFile("appsettings.json", false)
+                        .AddJsonFile($"appsettings.{hostingContext.HostingEnvironment.EnvironmentName}.json", true);
+                    config.AddEnvironmentVariables();
+                })
+                .UseStartup<Startup>()
+                .Build();
+        }
     }
 }
