@@ -2,4 +2,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\USchedule.Models\USchedule.Models.csproj" />
+    <ProjectReference Include="..\USchedule.Persistence\USchedule.Persistence.csproj" />
+  </ItemGroup>
 </Project>

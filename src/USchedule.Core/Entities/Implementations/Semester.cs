@@ -1,14 +1,17 @@
 ﻿using System;
 using USchedule.Core.Entities.Implementations.Base;
+using USchedule.Core.Enums;
 
 namespace USchedule.Core.Entities.Implementations
 {
-    public class Building: ShortTitleEntityBase
+    public class Semester: EntityBase
     {
-        public Guid LocationId { get; set; }
+        public SemesterType Type { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        
         public Guid UniversityId { get; set; }
         
-        public Location Location { get; set; }
         public University University { get; set; }
     }
 }

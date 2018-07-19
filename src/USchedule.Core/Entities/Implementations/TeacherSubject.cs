@@ -6,8 +6,6 @@ namespace USchedule.Core.Entities.Implementations
 {
     public class TeacherSubject : EntityBase
     {
-        public SubjectType Type { get; set; }
-
         public Guid TeacherId { get; set; }
         public Guid SubjectId { get; set; }
 

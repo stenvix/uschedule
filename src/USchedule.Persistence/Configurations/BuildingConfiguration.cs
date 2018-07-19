@@ -12,6 +12,7 @@ namespace USchedule.Persistence.Configurations
             builder.Property(i => i.Title).IsRequired();
             builder.Property(i => i.ShortTitle).IsRequired();
             builder.HasOne(i => i.Location).WithMany().HasForeignKey(i => i.LocationId);
+            builder.HasOne(i => i.University).WithMany(i => i.Buildings).HasForeignKey(i => i.UniversityId);
         }
     }
 }
