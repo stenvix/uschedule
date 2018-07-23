@@ -1,0 +1,418 @@
+﻿{
+  "Locations": [
+    {
+      "Id": "E507C1BF-721F-4C02-8461-0474051E9490",
+      // Main Building
+      "Latitude": "49.835272",
+      "Longitude": "24.014435",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "B7D886D1-2AB4-4CE7-BF57-631CE05DD17A",
+      // First Building
+      "Latitude": "49.8351945",
+      "Longitude": "24.0103028",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "AD0CB758-90B2-4D2E-9F3D-0DF3A4B46175",
+      // Second Building
+      "Latitude": "49.8360521",
+      "Longitude": "24.0102206",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "FF876C2C-7062-4147-B2F3-1CA79DA7BE83",
+      // Third Building
+      "Latitude": "49.8364495",
+      "Longitude": "24.0136463",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "8F87E31E-60FA-467A-B04F-C9332E28B299",
+      // Fourth Building
+      "Latitude": "49.8363742",
+      "Longitude": "24.0109954",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "76637600-FDF5-4BD3-9D25-B90640EEB489",
+      // Fifth Building
+      "Latitude": "49.835199",
+      "Longitude": "24.0084904",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "2352682C-7325-4CFC-88DB-39AC7FA6B929",
+      // Six Building
+      "Latitude": "49.8351185",
+      "Longitude": "24.0066036",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "7FE099E0-7175-4022-8BD3-E06365849A98",
+      // Seven Building
+      "Latitude": "49.8345481",
+      "Longitude": "24.0078903",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "AD082947-3C08-4718-B620-C92C32B7CA26",
+      // Eight Building
+      "Latitude": "49.8369564",
+      "Longitude": "24.0090089",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    //TODO: Find coordinates
+    {
+      "Id": "C14F9248-E046-487F-BF50-9FCFDB7F4D70",
+      // 9 Building
+      "Latitude": "49.8369564",
+      "Longitude": "24.0090089",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "4BD41F09-7C72-467D-9ADF-5450D1C01F79",
+      // 10 Building
+      "Latitude": "49.8369564",
+      "Longitude": "24.0090089",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "D9C9857B-033A-400B-A16F-364E4976F6EA",
+      // 11 Building
+      "Latitude": "49.8369564",
+      "Longitude": "24.0090089",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "00A84427-5B64-4CD6-977D-3CC16A2BC179",
+      // 14 Building
+      "Latitude": "49.8369564",
+      "Longitude": "24.0090089",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "09BB48E4-C9FE-4E8A-8157-E88493D10E4A",
+      // 15 Building
+      "Latitude": "49.8369564",
+      "Longitude": "24.0090089",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "78DE297D-5FC8-481F-8220-F3457DA6773B",
+      // 19 Building
+      "Latitude": "49.8369564",
+      "Longitude": "24.0090089",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "65D7484C-CB97-486A-9845-C3C292D598FA",
+      // 28 Building
+      "Latitude": "49.8369564",
+      "Longitude": "24.0090089",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "EB2041C6-37D0-41B3-B3A5-D29577764907",
+      // 38 Building
+      "Latitude": "49.8369564",
+      "Longitude": "24.0090089",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    }
+  ],
+  "Buildings": [
+    {
+      "Id": "3BEAB4AF-E169-4B14-B018-65C4B6C17384",
+      "ShortTitle": "Гол. н.к",
+      "Title": "Головний навчальний корпус",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8",
+      "LocationId": "E507C1BF-721F-4C02-8461-0474051E9490"
+    },
+    {
+      "Id": "191BE387-872E-44D7-95BF-21CC72A03CE3",
+      "ShortTitle": "I н.к",
+      "Title": "Навчальний корпус №1",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8",
+      "LocationId": "B7D886D1-2AB4-4CE7-BF57-631CE05DD17A"
+    },
+    {
+      "Id": "B23E2619-CADE-4B4B-9521-026B841C4A4B",
+      "ShortTitle": "II н.к",
+      "Title": "Навчальний корпус №2",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8",
+      "LocationId": "AD0CB758-90B2-4D2E-9F3D-0DF3A4B46175"
+    },
+    {
+      "Id": "9DBA51B6-83B6-4CC4-ACF9-F4F62B27A068",
+      "ShortTitle": "III н.к",
+      "Title": "Навчальний корпус №3",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8",
+      "LocationId": "FF876C2C-7062-4147-B2F3-1CA79DA7BE83"
+    },
+    {
+      "Id": "86893820-DD3B-4D9D-AC5B-664891D1E0EA",
+      "ShortTitle": "IV н.к",
+      "Title": "Навчальний корпус №4",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8",
+      "LocationId": "8F87E31E-60FA-467A-B04F-C9332E28B299"
+    },
+    {
+      "Id": "1015F815-874A-409D-8AB6-B377287133AC",
+      "ShortTitle": "V н.к",
+      "Title": "Навчальний корпус №5",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8",
+      "LocationId": "76637600-FDF5-4BD3-9D25-B90640EEB489"
+    },
+    {
+      "Id": "D276C126-CAC1-4E3E-A398-E7E6027B1B50",
+      "ShortTitle": "VI н.к",
+      "Title": "Навчальний корпус №6",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8",
+      "LocationId": "2352682C-7325-4CFC-88DB-39AC7FA6B929"
+    },
+    {
+      "Id": "426E6B3C-356E-47A6-922D-1E67A0775647",
+      "ShortTitle": "VII н.к",
+      "Title": "Навчальний корпус №7",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8",
+      "LocationId": "7FE099E0-7175-4022-8BD3-E06365849A98"
+    },
+    {
+      "Id": "D32B45AB-09A9-4067-BA6E-9B557F221080",
+      "ShortTitle": "VIII н.к",
+      "Title": "Навчальний корпус №8",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8",
+      "LocationId": "AD082947-3C08-4718-B620-C92C32B7CA26"
+    },
+    {
+      "Id": "FC173457-4667-496C-B31F-F2F758A91A86",
+      "ShortTitle": "IX н.к",
+      "Title": "Навчальний корпус №9",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8",
+      "LocationId": "C14F9248-E046-487F-BF50-9FCFDB7F4D70"
+    },
+    {
+      "Id": "9FA2600C-4212-4ED9-9D0C-0EB6F00FC806",
+      "ShortTitle": "X н.к",
+      "Title": "Навчальний корпус №10",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8",
+      "LocationId": "4BD41F09-7C72-467D-9ADF-5450D1C01F79"
+    },
+    {
+      "Id": "E979F4B2-B0DB-4E52-8A2E-9A360DEDBFC4",
+      // 11 Building
+      "ShortTitle": "XI н.к",
+      "Title": "Навчальний корпус №11",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8",
+      "LocationId": "D9C9857B-033A-400B-A16F-364E4976F6EA"
+    },
+    {
+      "Id": "6C4C91AB-4C6F-4FC3-BA10-E6694BD23929",
+      "ShortTitle": "XIV н.к",
+      "Title": "Навчальний корпус №14",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8",
+      "LocationId": "00A84427-5B64-4CD6-977D-3CC16A2BC179"
+    },
+    {
+      "Id": "DE618271-D96D-4415-A871-7016055C0252",
+      "ShortTitle": "XV н.к",
+      "Title": "Навчальний корпус №15",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8",
+      "LocationId": "09BB48E4-C9FE-4E8A-8157-E88493D10E4A"
+    },
+    {
+      "Id": "53159DCF-5359-4914-ACB7-ABC43C6973F0",
+      "ShortTitle": "XIX н.к",
+      "Title": "Навчальний корпус №19",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8",
+      "LocationId": "78DE297D-5FC8-481F-8220-F3457DA6773B"
+    },
+    {
+      "Id": "7749E9D3-95AF-4C25-8E82-6293682D4BB5",
+      "ShortTitle": "XXVII н.к",
+      "Title": "Навчальний корпус №28",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8",
+      "LocationId": "65D7484C-CB97-486A-9845-C3C292D598FA"
+    },
+    {
+      "Id": "14D008A3-E6F9-4DF2-89D2-FA766A3D0AB7",
+      // 38 Building
+      "ShortTitle": "XXXVII н.к",
+      "Title": "Навчальний корпус №38",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8",
+      "LocationId": "EB2041C6-37D0-41B3-B3A5-D29577764907"
+    }
+  ],
+  //UNIVERSITY
+  "University": {
+    "Id": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8",
+    "Title": "Національний університет \"Львівська політехніка\"",
+    "ShortTitle": "НУ \"ЛП\"",
+    "Site": "http://www.lp.edu.ua/"
+  },
+  //INSTITUTES
+  "Institutes": [
+    {
+      "Id": "DB45DA3F-A5F3-43BA-B544-89F0D1C4BE49",
+      "Title": "Інститут архітектури",
+      "ShortTitle": "ІАРХ",
+      "BuildingId": "3BEAB4AF-E169-4B14-B018-65C4B6C17384",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "CCE1FBD2-9654-4C0F-BEA7-23385D475E98",
+      "Title": "Інститут адміністрування та післядипломної освіти",
+      "ShortTitle": "ІАПО",
+      "BuildingId": "86893820-DD3B-4D9D-AC5B-664891D1E0EA",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "92F3F06D-83C3-48E9-9AE8-80065FA8D8E0",
+      "Title": "Інститут будівництва та інженерії довкілля",
+      "ShortTitle": "ІБІД",
+      "BuildingId": "B23E2619-CADE-4B4B-9521-026B841C4A4B",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "BE0B7ED9-85DE-4061-A043-97529C03F8F9",
+      "Title": "Інститут геодезії",
+      "ShortTitle": "ІГДГ",
+      "BuildingId": "B23E2619-CADE-4B4B-9521-026B841C4A4B",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "319F5ABD-9499-4A81-A31C-AA7198C4B43C",
+      "Title": "Інститут гуманітарних та соціальних наук",
+      "ShortTitle": "ІГСН",
+      "BuildingId": "86893820-DD3B-4D9D-AC5B-664891D1E0EA",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "442BE402-E065-4B5D-AF0F-1AD837E995B0",
+      "Title": "Інститут енергетики та систем керування",
+      "ShortTitle": "ІЕСК",
+      "BuildingId": "3BEAB4AF-E169-4B14-B018-65C4B6C17384",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "394F09B6-325A-4565-9824-5512ADFE239D",
+      "Title": "Інститут інженерної механіки та транспорту",
+      "ShortTitle": "ІІМТ",
+      "BuildingId": "6C4C91AB-4C6F-4FC3-BA10-E6694BD23929",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "51906154-4820-4BDA-ADA8-7C26E33CA6BA",
+      "Title": "Інститут комп'ютерних наук та інформаційних технологій",
+      "ShortTitle": "ІКНІ",
+      "BuildingId": "1015F815-874A-409D-8AB6-B377287133AC",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "97844DF5-8E3A-45A2-B11F-F8AAE41DA42D",
+      "Title": "Інститут комп'ютерних технологій, автоматики та метрології",
+      "ShortTitle": "ІКТА",
+      "BuildingId": "1015F815-874A-409D-8AB6-B377287133AC",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "D7D32754-6867-4B05-9AE4-E3D6A8732927",
+      "Title": "Інститут прикладної математики та фундаментальних наук",
+      "ShortTitle": "ІМФН",
+      "BuildingId": "86893820-DD3B-4D9D-AC5B-664891D1E0EA",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "96891A57-539C-4D3C-BDC6-209E10C46B99",
+      "Title": "Інститут економіки і менеджменту",
+      "ShortTitle": "ІНЕМ",
+      "BuildingId": "86893820-DD3B-4D9D-AC5B-664891D1E0EA",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "D2EA880A-A1A2-4B10-BAFC-83998D55B009",
+      "Title": "Інститут права та психології",
+      "ShortTitle": "ІНПП",
+      "BuildingId": "53159DCF-5359-4914-ACB7-ABC43C6973F0",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "2772CEAD-4B78-43D9-AE5B-629F5240DEC3",
+      "Title": "Інститут сталого розвитку ім. В.Чорновола",
+      "ShortTitle": "ІСТР",
+      "BuildingId": "14D008A3-E6F9-4DF2-89D2-FA766A3D0AB7",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "4E45E1DA-DFB4-4AC5-8587-7BD5EF48BEFB",
+      "Title": "Інститут телекомунікацій, радіоелектроніки та електронної техніки",
+      "ShortTitle": "ІТРЕ",
+      "BuildingId": "E979F4B2-B0DB-4E52-8A2E-9A360DEDBFC4",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Id": "47D06B46-1165-41FA-BD6F-3D58A9514AFC",
+      "Title": "Інститут хімії та хімічних технологій",
+      "ShortTitle": "ІХХТ",
+      "BuildingId": "FC173457-4667-496C-B31F-F2F758A91A86",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    }
+  ],
+  //DEPARTMENTS
+  "Departments": [
+    
+  ],
+  //TIMETABLE
+  "LessonTimes":[
+    {
+      "Number" : 1,
+      "Start": "08:30:00",
+      "End": "10:05:00",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Number" : 2,
+      "Start": "10:20:00",
+      "End": "11:55:00",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Number" : 3,
+      "Start": "12:10:00",
+      "End": "13:45:00",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Number" : 4,
+      "Start": "14:15:00",
+      "End": "15:50:00",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Number" : 5,
+      "Start": "16:00:00",
+      "End": "17:35:00",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Number" : 6,
+      "Start": "17:40:00",
+      "End": "19:15:00",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Number" : 7,
+      "Start": "19:20:00",
+      "End": "20:55:00",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    },
+    {
+      "Number" : 8,
+      "Start": "21:00:00",
+      "End": "22:35:00",
+      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+    }
+  ]  
+}
+
