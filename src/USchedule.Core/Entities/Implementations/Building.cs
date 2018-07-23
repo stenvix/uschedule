@@ -3,7 +3,7 @@ using USchedule.Core.Entities.Implementations.Base;
 
 namespace USchedule.Core.Entities.Implementations
 {
-    public class Building: ShortTitleEntityBase
+    public class Building: ShortTitleEntity
     {
         public Guid LocationId { get; set; }
         public Guid UniversityId { get; set; }

@@ -3,7 +3,7 @@ using USchedule.Core.Entities.Implementations.Base;
 
 namespace USchedule.Core.Entities.Implementations
 {
-    public class LessonTime : EntityBase
+    public class LessonTime : BaseEntity
     {
         public int Number { get; set; }
         public TimeSpan Start { get; set; }

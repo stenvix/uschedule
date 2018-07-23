@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using USchedule.Models.Domain;
+using USchedule.Models.Domain.Base;
 
 namespace USchedule.Models.Extensions
 {

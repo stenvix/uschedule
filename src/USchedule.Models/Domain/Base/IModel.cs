@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace USchedule.Models.Domain
+namespace USchedule.Models.Domain.Base
 {
     public interface IModel
     {

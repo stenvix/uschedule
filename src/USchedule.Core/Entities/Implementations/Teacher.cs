@@ -3,7 +3,7 @@ using USchedule.Core.Entities.Implementations.Base;
 
 namespace USchedule.Core.Entities.Implementations
 {
-    public class Teacher: EntityBase
+    public class Teacher: BaseEntity
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

@@ -2,6 +2,7 @@
 using AutoMapper;
 using USchedule.Core.Entities.Abstractions;
 using USchedule.Models.Domain;
+using USchedule.Models.Domain.Base;
 
 namespace USchedule.Models.Extensions
 {

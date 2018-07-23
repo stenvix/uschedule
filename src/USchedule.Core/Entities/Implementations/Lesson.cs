@@ -4,7 +4,7 @@ using USchedule.Core.Enums;
 
 namespace USchedule.Core.Entities.Implementations
 {
-    public class Lesson: EntityBase
+    public class Lesson: BaseEntity
     {
         public SubjectType Type { get; set; }
 

@@ -4,7 +4,7 @@ using USchedule.Core.Enums;
 
 namespace USchedule.Core.Entities.Implementations
 {
-    public class Semester: EntityBase
+    public class Semester: BaseEntity
     {
         public SemesterType Type { get; set; }
         public DateTime StartDate { get; set; }

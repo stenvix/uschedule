@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using USchedule.Core.Entities.Abstractions;
 using USchedule.Models.Domain;
+using USchedule.Models.Domain.Base;
 using USchedule.Models.Extensions;
 using USchedule.Persistence.Repositories;
 

@@ -11,6 +11,7 @@ using NLog;
 using NLog.Extensions.Logging;
 using USchedule.Core.Enums;
 using USchedule.Models.Domain;
+using USchedule.Models.Domain.Base;
 using USchedule.Models.DTO;
 using USchedule.Persistence.Database;
 using ILogger = NLog.ILogger;

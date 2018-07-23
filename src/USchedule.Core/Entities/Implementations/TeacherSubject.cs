@@ -4,7 +4,7 @@ using USchedule.Core.Enums;
 
 namespace USchedule.Core.Entities.Implementations
 {
-    public class TeacherSubject : EntityBase
+    public class TeacherSubject : BaseEntity
     {
         public Guid TeacherId { get; set; }
         public Guid SubjectId { get; set; }
