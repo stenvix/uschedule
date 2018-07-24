@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace USchedule.Domain.Managers
+namespace USchedule.Domain.Managers.Base
 {
     public interface IManager<TModel> : IDisposable where TModel : class
     {

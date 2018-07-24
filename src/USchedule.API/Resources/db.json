@@ -4,121 +4,104 @@
       "Id": "E507C1BF-721F-4C02-8461-0474051E9490",
       // Main Building
       "Latitude": "49.835272",
-      "Longitude": "24.014435",
-      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+      "Longitude": "24.014435"
     },
     {
       "Id": "B7D886D1-2AB4-4CE7-BF57-631CE05DD17A",
       // First Building
       "Latitude": "49.8351945",
-      "Longitude": "24.0103028",
-      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+      "Longitude": "24.0103028"
     },
     {
       "Id": "AD0CB758-90B2-4D2E-9F3D-0DF3A4B46175",
       // Second Building
       "Latitude": "49.8360521",
-      "Longitude": "24.0102206",
-      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+      "Longitude": "24.0102206"
     },
     {
       "Id": "FF876C2C-7062-4147-B2F3-1CA79DA7BE83",
       // Third Building
       "Latitude": "49.8364495",
-      "Longitude": "24.0136463",
-      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+      "Longitude": "24.0136463"
     },
     {
       "Id": "8F87E31E-60FA-467A-B04F-C9332E28B299",
       // Fourth Building
       "Latitude": "49.8363742",
-      "Longitude": "24.0109954",
-      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+      "Longitude": "24.0109954"
     },
     {
       "Id": "76637600-FDF5-4BD3-9D25-B90640EEB489",
       // Fifth Building
       "Latitude": "49.835199",
-      "Longitude": "24.0084904",
-      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+      "Longitude": "24.0084904"
     },
     {
       "Id": "2352682C-7325-4CFC-88DB-39AC7FA6B929",
       // Six Building
       "Latitude": "49.8351185",
-      "Longitude": "24.0066036",
-      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+      "Longitude": "24.0066036"
     },
     {
       "Id": "7FE099E0-7175-4022-8BD3-E06365849A98",
       // Seven Building
       "Latitude": "49.8345481",
-      "Longitude": "24.0078903",
-      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+      "Longitude": "24.0078903"
     },
     {
       "Id": "AD082947-3C08-4718-B620-C92C32B7CA26",
       // Eight Building
       "Latitude": "49.8369564",
-      "Longitude": "24.0090089",
-      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+      "Longitude": "24.0090089"
     },
     //TODO: Find coordinates
     {
       "Id": "C14F9248-E046-487F-BF50-9FCFDB7F4D70",
       // 9 Building
       "Latitude": "49.8369564",
-      "Longitude": "24.0090089",
-      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+      "Longitude": "24.0090089"
     },
     {
       "Id": "4BD41F09-7C72-467D-9ADF-5450D1C01F79",
       // 10 Building
       "Latitude": "49.8369564",
-      "Longitude": "24.0090089",
-      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+      "Longitude": "24.0090089"
     },
     {
       "Id": "D9C9857B-033A-400B-A16F-364E4976F6EA",
       // 11 Building
       "Latitude": "49.8369564",
-      "Longitude": "24.0090089",
-      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+      "Longitude": "24.0090089"
     },
     {
       "Id": "00A84427-5B64-4CD6-977D-3CC16A2BC179",
       // 14 Building
       "Latitude": "49.8369564",
-      "Longitude": "24.0090089",
-      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+      "Longitude": "24.0090089"
     },
     {
       "Id": "09BB48E4-C9FE-4E8A-8157-E88493D10E4A",
       // 15 Building
       "Latitude": "49.8369564",
-      "Longitude": "24.0090089",
-      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+      "Longitude": "24.0090089"
     },
     {
       "Id": "78DE297D-5FC8-481F-8220-F3457DA6773B",
       // 19 Building
       "Latitude": "49.8369564",
-      "Longitude": "24.0090089",
-      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+      "Longitude": "24.0090089"
     },
     {
       "Id": "65D7484C-CB97-486A-9845-C3C292D598FA",
       // 28 Building
       "Latitude": "49.8369564",
-      "Longitude": "24.0090089",
-      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+      "Longitude": "24.0090089"
     },
     {
       "Id": "EB2041C6-37D0-41B3-B3A5-D29577764907",
       // 38 Building
       "Latitude": "49.8369564",
-      "Longitude": "24.0090089",
-      "UniversityId": "8B4E1134-ADD9-4017-BC1A-EDAC5D88ECE8"
+      "Longitude": "24.0090089"
     }
   ],
   "Buildings": [

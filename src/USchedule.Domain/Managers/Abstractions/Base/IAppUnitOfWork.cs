@@ -1,7 +1,10 @@
-﻿namespace USchedule.Domain.Managers
+﻿using USchedule.Persistence.Repositories;
+
+namespace USchedule.Domain.Managers.Base
 {
     public interface IAppUnitOfWork : IUnitOfWork
     {
+        IUniversityRepository UniversityRepository { get; }
 //        IAccountRepository AccountRepository { get; }
 //        IBlockedCustomerRepository BlockedCustomerRepository { get; }
 //        ICategoryRepository CategoryRepository { get; }

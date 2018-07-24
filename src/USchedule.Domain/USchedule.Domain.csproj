@@ -6,4 +6,7 @@
     <ProjectReference Include="..\USchedule.Models\USchedule.Models.csproj" />
     <ProjectReference Include="..\USchedule.Persistence\USchedule.Persistence.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Providers\Implementations" />
+  </ItemGroup>
 </Project>

@@ -1,4 +1,6 @@
 ﻿using System;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NLog;
 using NLog.Extensions.Logging;
+using USchedule.API.Providers;
 using USchedule.Core.Enums;
 using USchedule.Models.Domain;
 using USchedule.Models.Domain.Base;
@@ -28,11 +31,12 @@ namespace USchedule.API
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             ConfigureDatabase(services);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddAutoMapper(typeof(IModel));
+            return ConfigureContainer(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,9 +55,7 @@ namespace USchedule.API
             ConfigureLogging(serviceProvider.GetService<ILoggerFactory>());
             serviceProvider.GetService<DataContext>().Initialize(serviceProvider.GetService<ILogger<DataContext>>());
 
-
             app.UseMvc();
-//            ConfigureDatabase(env.EnvironmentName, dataContext);
         }
 
         private void ConfigureLogging(ILoggerFactory loggerFactory)
@@ -97,6 +99,16 @@ namespace USchedule.API
                     break;
                 }
             }
+        }
+        
+        private IServiceProvider ConfigureContainer(IServiceCollection services)
+        {
+            var builder = new ContainerBuilder();
+            builder.Populate(services);
+            builder.RegisterModule(new CoreModule());
+            builder.RegisterModule(new ManagerModule());
+            builder.RegisterModule(new ServiceModule());
+            return new AutofacServiceProvider(builder.Build());
         }
     }
 }

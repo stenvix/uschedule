@@ -7,9 +7,5 @@ namespace USchedule.Core.Entities.Implementations
     {
         public string Latitude { get; set; }
         public string Longitude { get; set; }
-        
-        public Guid UniversityId { get; set; } //TODO: Remove
-        
-        public University University { get; set; }
     }
 }
