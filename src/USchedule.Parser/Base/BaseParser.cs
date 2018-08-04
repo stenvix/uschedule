@@ -1,57 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using Microsoft.Extensions.Logging;
+using Quartz;
+using Quartz.Impl;
+using USchedule.Parser.Executor;
 
 namespace USchedule.Parser.Base
 {
     public abstract class BaseParser
     {
-        protected readonly ILogger<BaseParser> Logger;
-        protected HttpClient HttpClient;
+        private readonly string _baseUrl;
 
-        protected BaseParser(string baseUrl, ILogger<BaseParser> logger)
+        protected readonly ILogger<BaseParser> Logger;
+        private readonly ILogger<ParseJob> _parseLogger;
+
+        protected BaseParser(string baseUrl, ILogger<BaseParser> logger, ILogger<ParseJob> parseLogger)
         {
+            _baseUrl = baseUrl;
             Logger = logger;
-            HttpClient = new HttpClient{BaseAddress = new Uri(baseUrl)};
+            _parseLogger = parseLogger;
         }
+
 
         protected abstract IEnumerable<ParseTask> InitialTask(HtmlDocument document);
 
         public async Task RunAsync()
         {
-            var startResponse = await HttpClient.GetAsync("");
-            var startStream = await startResponse.Content.ReadAsStreamAsync();
+            var factory = new StdSchedulerFactory();
+            var scheduler = await factory.GetScheduler();
+            var tasks = InitialTask(await ParseJob.GetDocument(_baseUrl, ""));
 
-            HtmlDocument startDoc = new HtmlDocument();
-            startDoc.Load(startStream);
-                        
-            var tasks = InitialTask(startDoc);
-            await ProcessQueue(tasks);
-        }
-
-        private async Task ProcessQueue(IEnumerable<ParseTask> queue)
-        {
-            foreach (var task in queue)
+            foreach (var task in tasks)
             {
-                try
-                {
-                    var response = await HttpClient.GetAsync(task.Url);
-                    var stream = await response.Content.ReadAsStreamAsync();
-
-                    HtmlDocument doc = new HtmlDocument();
-                    doc.Load(stream);
-                    await ProcessQueue(task.Action.Invoke(doc, task.Args));
-                }
-                catch (Exception e)
-                {
-                    Logger.LogError(e, e.Message);
-                    throw;
-                }
+                var job = ParseJob.BuildJob(_baseUrl, task, scheduler, _parseLogger);
+                await scheduler.ScheduleJob(job, ParseJob.BuildTrigger(job.Key));
             }
+
+            await scheduler.Start();
         }
     }
 }

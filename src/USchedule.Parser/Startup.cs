@@ -1,7 +1,8 @@
 ﻿using System.IO;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
+using NLog.Extensions.Logging;
+using USchedule.Parser.Executor;
 
 namespace USchedule.Parser
 {
@@ -31,15 +32,15 @@ namespace USchedule.Parser
 
         private void SetLoggin()
         {
-
             LoggerFactory = new LoggerFactory();
-            LoggerFactory.AddConsole(new ConfigurationConsoleLoggerSettings(Config.GetSection("Logging:Console")));
+            LoggerFactory.AddNLog();
         }
 
         public void Run()
         {
             var logger = LoggerFactory.CreateLogger<NulpParser>();
-            var parser = new NulpParser(logger);
+            var parseLogger = LoggerFactory.CreateLogger<ParseJob>();
+            var parser = new NulpParser(logger, parseLogger);
             parser.RunAsync().GetAwaiter().GetResult();
         }
     }

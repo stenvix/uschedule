@@ -8,5 +8,10 @@
         public static string SemesterPartId = "SemesterPartId";
         public static string GroupId = "GroupId";
         public static string GroupName = "GroupName";
+
+        public static string JobTask = "JobTask";
+        public static string JobScheduler = "JobScheduler";
+        public static string JobBaseUrl = "JobBaseUrl";
+        public static string JobLogger = "JobLogger";
     }
 }

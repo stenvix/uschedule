@@ -5,6 +5,7 @@ using System.Net;
 using HtmlAgilityPack;
 using Microsoft.Extensions.Logging;
 using USchedule.Parser.Base;
+using USchedule.Parser.Executor;
 using USchedule.Shared.Enums;
 using USchedule.Shared.Models;
 
@@ -23,7 +24,7 @@ namespace USchedule.Parser
             {"лаб.", SubjectTypeShared.Lab}, {"прак.", SubjectTypeShared.Practical}, {"лекція", SubjectTypeShared.Lecture}
         };
         
-        public NulpParser(ILogger<BaseParser> logger) : base("http://www.lp.edu.ua/rozklad-dlya-studentiv", logger)
+        public NulpParser(ILogger<BaseParser> logger, ILogger<ParseJob> parseLogger) : base("http://www.lp.edu.ua/rozklad-dlya-studentiv", logger, parseLogger)
         {
             
         }
