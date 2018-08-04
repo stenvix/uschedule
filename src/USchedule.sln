@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USchedule.Services", "USche
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USchedule.Shared", "USchedule.Shared\USchedule.Shared.csproj", "{E1C9A047-C2F7-46B7-8618-3494331D48CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USchedule.Parser", "USchedule.Parser\USchedule.Parser.csproj", "{53EC9FFE-725A-4EA0-9F52-C91049678765}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
