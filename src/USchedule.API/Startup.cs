@@ -66,17 +66,17 @@ namespace USchedule.API
 
         private void ConfigureDatabase(IServiceCollection services)
         {
+            var provider = Configuration["DbProvider"];
+            var connection = Configuration["DbConnection"];
+            if (Enum.TryParse(provider, out DatabaseProvider dbProvider) && !string.IsNullOrEmpty(connection))
+            {
+                SetProviderConfiguration(services, dbProvider, connection);
+                return;
+            }
+            
             var dbConfig = Configuration.GetSection("DbConfiguration").Get<DbConfig>();
             if (dbConfig == null)
             {
-                var provider = Configuration["DbProvider"];
-                var connection = Configuration["DbConnection"];
-                if (Enum.TryParse(provider, out DatabaseProvider dbProvider) && !string.IsNullOrEmpty(connection))
-                {
-                    SetProviderConfiguration(services, dbProvider, connection);
-                    return;
-                }
-
                 throw new ArgumentNullException(nameof(dbConfig), "Database configuration missing.");
             }
 

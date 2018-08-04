@@ -10,11 +10,12 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT="DEVELOPMENT"
       - ASPNETCORE_URLS=http://*:5000
-      - ConnectionStrings__USchedule=Server=lpschedule-api_db_1;Database=uschedule;User Id=uschedule;Password=uschedule
+      - DbProvider=Postgres
+      - DbConnection=Server=database;Database=uschedule;User Id=uschedule;Password=uschedule
     ports:
       - "5000:5000"
-    depends_on:
-      - db
+    links:
+      - "db:database"
   db: 
     image: postgres
     environment:

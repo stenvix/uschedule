@@ -11,6 +11,9 @@ namespace USchedule.API.Providers
             base.Load(builder);
             builder.RegisterType<AppUnitOfWork>().AsImplementedInterfaces();
             builder.RegisterType<UniversityManager>().AsImplementedInterfaces();
+            builder.RegisterType<InstituteManager>().AsImplementedInterfaces();
+            builder.RegisterType<DepartmentManager>().AsImplementedInterfaces();
+            builder.RegisterType<LessonManager>().AsImplementedInterfaces();
             builder.RegisterType<ManagerStore>().As<IManagerStore>();
         }
     }

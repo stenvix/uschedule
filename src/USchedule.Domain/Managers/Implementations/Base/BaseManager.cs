@@ -14,7 +14,7 @@ namespace USchedule.Domain.Managers.Base
     {
         protected ILogger<BaseManager<TModel, TEntity>> Logger;
         protected readonly IRepository<TEntity> Repository;
-        private readonly IMapper _mapper;
+        protected readonly IMapper Mapper;
         protected readonly IUnitOfWork UnitOfWork;
 
         protected BaseManager(IUnitOfWork unitOfWork, IRepository<TEntity> repository, IMapper mapper,ILogger<BaseManager<TModel, TEntity>> logger)
@@ -22,29 +22,29 @@ namespace USchedule.Domain.Managers.Base
             Logger = logger;
             UnitOfWork = unitOfWork;
             Repository = repository;
-            _mapper = mapper;
+            Mapper = mapper;
         }
 
         public virtual async Task<IList<TModel>> GetAsync()
         {
-            return _mapper.Map<IEnumerable<TEntity>, IList<TModel>>(await Repository.GetAsync());
+            return Mapper.Map<IEnumerable<TEntity>, IList<TModel>>(await Repository.GetAsync());
         }
 
         public virtual async Task<TModel> GetAsync(Guid id)
         {
-            return _mapper.Map<TEntity, TModel>(await Repository.GetAsync(id));
+            return Mapper.Map<TEntity, TModel>(await Repository.GetAsync(id));
         }
 
         public virtual async Task<TModel> CreateAsync(TModel entity)
         {
-            var result = await Repository.CreateAsync(_mapper.Map<TEntity>(entity));
+            var result = await Repository.CreateAsync(Mapper.Map<TEntity>(entity));
             await UnitOfWork.SaveChanges();
             return  await GetAsync(result.Id);
         }
 
         public virtual async Task<TModel> UpdateAsync(TModel entity)
         {
-            var result = await Repository.Update(_mapper.Map<TEntity>(entity));
+            var result = await Repository.Update(Mapper.Map<TEntity>(entity));
             await UnitOfWork.SaveChanges();
             return await GetAsync(result.Id);
         }
@@ -57,7 +57,7 @@ namespace USchedule.Domain.Managers.Base
 
         public virtual async Task DeleteAsync(TModel entity)
         {
-            await Repository.DeleteAsync(_mapper.Map<TEntity>(entity));
+            await Repository.DeleteAsync(Mapper.Map<TEntity>(entity));
             await UnitOfWork.SaveChanges();
         }
 

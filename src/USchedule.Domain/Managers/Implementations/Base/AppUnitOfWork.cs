@@ -10,13 +10,20 @@ namespace USchedule.Domain.Managers.Base
 
         protected readonly DataContext Context;
         private IUniversityRepository _universityRepository;
+        private IInstituteRepository _instituteRepository;
+        private IDepartmentRepository _departmentRepository;
+        private IGroupRepository _groupRepository;
+        private ILessonRepository _lessonRepository;
 
         #endregion
-
 
         #region Properties
         
         public IUniversityRepository UniversityRepository => _universityRepository ?? (_universityRepository = new UniversityRepository(Context));
+        public ILessonRepository LessonRepository => _lessonRepository ?? (_lessonRepository = new LessonRepository(Context));
+        public IGroupRepository GroupRepository => _groupRepository ?? (_groupRepository = new GroupRepository(Context));
+        public IInstituteRepository InstituteRepository => _instituteRepository ?? (_instituteRepository = new InstituteRepository(Context));
+        public IDepartmentRepository DepartmentRepository => _departmentRepository ?? (_departmentRepository = new DepartmentRepository(Context));
 
         #endregion
 
