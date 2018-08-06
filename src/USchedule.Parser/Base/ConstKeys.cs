@@ -8,6 +8,8 @@
         public static string SemesterPartId = "SemesterPartId";
         public static string GroupId = "GroupId";
         public static string GroupName = "GroupName";
+        public static string DepartmentName = "DepartmentName";
+        public static string DepartmentId = "DepartmentId";
 
         public static string JobTask = "JobTask";
         public static string JobScheduler = "JobScheduler";

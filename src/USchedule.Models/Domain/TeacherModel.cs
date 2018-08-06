@@ -1,6 +1,8 @@
-﻿namespace USchedule.Models.Domain
+﻿using USchedule.Models.Domain.Base;
+
+namespace USchedule.Models.Domain
 {
-    public class TeacherModel
+    public class TeacherModel: BaseModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

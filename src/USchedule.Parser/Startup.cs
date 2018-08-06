@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
 using USchedule.Parser.Executor;
+using USchedule.Parser.Implementations;
 
 namespace USchedule.Parser
 {
@@ -13,7 +14,6 @@ namespace USchedule.Parser
 
         public Startup()
         {
-            
         }
 
         public void Configure()
@@ -38,10 +38,20 @@ namespace USchedule.Parser
 
         public void Run()
         {
-            var logger = LoggerFactory.CreateLogger<NulpParser>();
-            var parseLogger = LoggerFactory.CreateLogger<ParseJob>();
-            var parser = new NulpParser(logger, parseLogger);
-            parser.RunAsync().GetAwaiter().GetResult();
+            var teachersLogger = LoggerFactory.CreateLogger<NulpStudentsParser>();
+            var teacherParseLogger = LoggerFactory.CreateLogger<ParseJob>();
+            var teachersUrl = Config.GetValue<string>("Nulp:TeachersUrl");
+            var teachersApiUrl = Config.GetValue<string>("Nulp:TeachersApiUrl");
+
+            var teacherParser = new NulpTeachersParser(teachersUrl, teachersApiUrl, teachersLogger, teacherParseLogger);
+            teacherParser.RunAsync().GetAwaiter().GetResult();
+
+//            var logger = LoggerFactory.CreateLogger<NulpStudentsParser>();
+//            var parseLogger = LoggerFactory.CreateLogger<ParseJob>();
+//            var studentsUrl = Config.GetValue<string>("Nulp:StudentsUrl");
+//            var studentsApiUrl = Config.GetValue<string>("Nulp:StudentsApiUrl");
+//            var parser = new NulpStudentsParser(studentsUrl, studentsApiUrl, logger, parseLogger);
+//            parser.RunAsync().GetAwaiter().GetResult();
         }
     }
 }

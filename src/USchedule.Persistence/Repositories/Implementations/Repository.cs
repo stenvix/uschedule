@@ -60,6 +60,11 @@ namespace USchedule.Persistence.Repositories
             return (await Set.AddAsync(entity))?.Entity;
         }
 
+        public Task CreateRangeAsync(IEnumerable<TEntity> entities)
+        {
+            return Set.AddRangeAsync(entities);
+        }
+
         public virtual async Task<TEntity> Update(TEntity entity)
         {
             return await Task.Run(() =>

@@ -9,5 +9,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\USchedule.Core\USchedule.Core.csproj" />
+    <ProjectReference Include="..\USchedule.Shared\USchedule.Shared.csproj" />
   </ItemGroup>
 </Project>

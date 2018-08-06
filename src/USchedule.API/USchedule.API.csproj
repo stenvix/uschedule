@@ -35,5 +35,19 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="appsettings.json">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="out\nlog.config" />
+    <_ContentIncludedByDefault Remove="out\web.config" />
+    <_ContentIncludedByDefault Remove="out\appsettings.Development.json" />
+    <_ContentIncludedByDefault Remove="out\appsettings.json" />
+    <_ContentIncludedByDefault Remove="out\appsettings.Testing.json" />
+    <_ContentIncludedByDefault Remove="out\Resources\db.json" />
+    <_ContentIncludedByDefault Remove="out\USchedule.API.deps.json" />
+    <_ContentIncludedByDefault Remove="out\USchedule.API.runtimeconfig.json" />
   </ItemGroup>
 </Project>

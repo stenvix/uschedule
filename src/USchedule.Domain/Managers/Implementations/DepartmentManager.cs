@@ -20,5 +20,11 @@ namespace USchedule.Domain.Managers
             var entities = await Repository.FindAllAsync(i => i.InstituteId == instituteId);
             return Mapper.Map<IList<DepartmentModel>>(entities);
         }
+
+        public async Task<DepartmentModel> GetByTitleAsync(string departmentTitle)
+        {
+            var entity = await Repository.FindAsync(i => i.Title == departmentTitle);
+            return Mapper.Map<DepartmentModel>(entity);
+        }
     }
 }

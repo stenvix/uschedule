@@ -10,9 +10,9 @@ namespace USchedule.Persistence.Configurations
         {
             builder.HasKey(i => i.Id);
             builder.Property(i => i.Title).IsRequired();
-            builder.Property(i => i.ShortTitle).IsRequired();
+//            builder.Property(i => i.ShortTitle).IsRequired();
             builder.HasIndex(i => new {i.Title, i.InstituteId}).IsUnique();
-            builder.HasIndex(i => new {i.ShortTitle, i.InstituteId}).IsUnique();
+//            builder.HasIndex(i => new {i.ShortTitle, i.InstituteId}).IsUnique();
             builder.HasOne(i => i.Institute).WithMany().HasForeignKey(i => i.InstituteId);
             builder.HasOne(i => i.Room).WithMany().HasForeignKey(i => i.RoomId);
         }

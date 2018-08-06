@@ -25,3 +25,13 @@ services:
       - "5432"
     ports:
       - "5432:5432"
+
+  parser:
+    image: uschedule/uschedule.parser:${TAG:-latest}
+    build:
+      context: src
+      dockerfile: USchedule.Parser/Dockerfile
+    links:
+      - "uschedule.api:uscheduleapi"
+    tty: true
+    

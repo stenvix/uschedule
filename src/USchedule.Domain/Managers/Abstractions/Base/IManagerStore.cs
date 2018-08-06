@@ -7,5 +7,6 @@
         IDepartmentManager DepartmentManager { get; }
         IGroupManager GroupManager { get; }
         ILessonManager LessonManager { get; }
+        ITeacherManager TeacherManager { get; }
     }
 }

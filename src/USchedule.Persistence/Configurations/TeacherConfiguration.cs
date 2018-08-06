@@ -11,7 +11,7 @@ namespace USchedule.Persistence.Configurations
             builder.HasKey(i => i.Id);
             builder.Property(i => i.FirstName).IsRequired();
             builder.Property(i => i.LastName).IsRequired();
-            builder.Property(i => i.MiddleName).IsRequired();
+//            builder.Property(i => i.MiddleName).IsRequired();
             builder.HasOne(i => i.Department).WithMany().HasForeignKey(i => i.DepartmentId);
         }
     }

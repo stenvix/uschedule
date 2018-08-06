@@ -1,4 +1,6 @@
-﻿using USchedule.Models.Domain.Base;
+﻿using System;
+using Newtonsoft.Json;
+using USchedule.Models.Domain.Base;
 
 namespace USchedule.Models.Domain
 {

@@ -30,6 +30,8 @@ namespace USchedule.Persistence.Database
                 context.SaveChanges();
                 context.Institutes.AddRange(seed.Institutes);
                 context.SaveChanges();
+                context.Departments.AddRange(seed.Departments);
+                context.SaveChanges();
                 context.LessonTimes.AddRange(seed.LessonTimes);
                 context.SaveChanges();
             }

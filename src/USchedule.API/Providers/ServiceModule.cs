@@ -12,6 +12,8 @@ namespace USchedule.API.Providers
             builder.RegisterType<InstituteService>().As<IInstituteService>();
             builder.RegisterType<DepartmentService>().As<IDepartmentService>();
             builder.RegisterType<LessonService>().As<ILessonService>();
+            builder.RegisterType<GroupService>().As<IGroupService>();
+            builder.RegisterType<ImportService>().As<IImportService>();
         }
     }
 }

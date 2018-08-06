@@ -9,5 +9,6 @@ namespace USchedule.Domain.Managers
     public interface IDepartmentManager : IManager<DepartmentModel>
     {
         Task<IList<DepartmentModel>> GetByInstituteAsync(Guid instituteId);
+        Task<DepartmentModel>  GetByTitleAsync(string departmentTitle);
     }
 }

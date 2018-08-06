@@ -14,6 +14,7 @@ namespace USchedule.Domain.Managers.Base
         private IDepartmentRepository _departmentRepository;
         private IGroupRepository _groupRepository;
         private ILessonRepository _lessonRepository;
+        private ITeacherRepository _teacherRepository;
 
         #endregion
 
@@ -21,6 +22,7 @@ namespace USchedule.Domain.Managers.Base
         
         public IUniversityRepository UniversityRepository => _universityRepository ?? (_universityRepository = new UniversityRepository(Context));
         public ILessonRepository LessonRepository => _lessonRepository ?? (_lessonRepository = new LessonRepository(Context));
+        public ITeacherRepository TeacherRepository => _teacherRepository ?? (_teacherRepository = new TeacherRepository(Context));
         public IGroupRepository GroupRepository => _groupRepository ?? (_groupRepository = new GroupRepository(Context));
         public IInstituteRepository InstituteRepository => _instituteRepository ?? (_instituteRepository = new InstituteRepository(Context));
         public IDepartmentRepository DepartmentRepository => _departmentRepository ?? (_departmentRepository = new DepartmentRepository(Context));

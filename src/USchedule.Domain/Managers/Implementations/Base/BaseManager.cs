@@ -15,9 +15,9 @@ namespace USchedule.Domain.Managers.Base
         protected ILogger<BaseManager<TModel, TEntity>> Logger;
         protected readonly IRepository<TEntity> Repository;
         protected readonly IMapper Mapper;
-        protected readonly IUnitOfWork UnitOfWork;
+        protected readonly IAppUnitOfWork UnitOfWork;
 
-        protected BaseManager(IUnitOfWork unitOfWork, IRepository<TEntity> repository, IMapper mapper,ILogger<BaseManager<TModel, TEntity>> logger)
+        protected BaseManager(IAppUnitOfWork unitOfWork, IRepository<TEntity> repository, IMapper mapper,ILogger<BaseManager<TModel, TEntity>> logger)
         {
             Logger = logger;
             UnitOfWork = unitOfWork;

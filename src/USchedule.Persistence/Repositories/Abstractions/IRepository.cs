@@ -15,6 +15,7 @@ namespace USchedule.Persistence.Repositories
         Task<IEnumerable<TEntity>> FindAllAsync(Expression<Func<TEntity, bool>> filter);
         IQueryable<TEntity> With<TProperty>(Expression<Func<TEntity, TProperty>> include);
         Task<TEntity> CreateAsync(TEntity entity);
+        Task CreateRangeAsync(IEnumerable<TEntity> entity);
         Task<TEntity> Update(TEntity entity);
         Task DeleteAsync(Guid id);
         Task DeleteAsync(TEntity entity);

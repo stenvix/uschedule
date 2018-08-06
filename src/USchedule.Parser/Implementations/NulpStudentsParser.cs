@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using HtmlAgilityPack;
 using Microsoft.Extensions.Logging;
 using USchedule.Parser.Base;
@@ -11,8 +13,15 @@ using USchedule.Shared.Models;
 
 namespace USchedule.Parser
 {
-    public class NulpParser: BaseParser
+    public class NulpStudentsParser: BaseParser
     {
+        private readonly string _apiUrl;
+
+        public NulpStudentsParser(string baseUrl, string apiUrl, ILogger<NulpStudentsParser> logger, ILogger<ParseJob> parseLogger):base(baseUrl, logger, parseLogger)
+        {
+            _apiUrl = apiUrl;
+        }
+        
         private static Dictionary<string, DayOfWeek> WeekDays = new Dictionary<string, DayOfWeek>
         {
             {"Пн", DayOfWeek.Monday},{"Вт", DayOfWeek.Tuesday}, {"Ср", DayOfWeek.Wednesday},
@@ -23,11 +32,6 @@ namespace USchedule.Parser
         {
             {"лаб.", SubjectTypeShared.Lab}, {"прак.", SubjectTypeShared.Practical}, {"лекція", SubjectTypeShared.Lecture}
         };
-        
-        public NulpParser(ILogger<BaseParser> logger, ILogger<ParseJob> parseLogger) : base("http://www.lp.edu.ua/rozklad-dlya-studentiv", logger, parseLogger)
-        {
-            
-        }
 
         protected override IEnumerable<ParseTask> InitialTask(HtmlDocument document)
         {
@@ -129,7 +133,7 @@ namespace USchedule.Parser
             }
 
             groupModel.Subjects = groupSubjects;
-            
+            Task.Run(() => PostDataToServer(groupModel));
             yield break;
         }
 
@@ -199,6 +203,28 @@ namespace USchedule.Parser
             }
 
             return result;
+        }
+
+        private async Task PostDataToServer(GroupSharedModel groupModel)
+        {
+            try
+            {
+                var httpClient = HttpClientFactory.Create();
+                var response = await httpClient.PostAsJsonAsync(_apiUrl, groupModel);
+                if (response.IsSuccessStatusCode)
+                {
+                    Logger.LogInformation($"Group {groupModel.InstituteName}-{groupModel.GroupName} successfully updated");
+                }
+                else
+                {
+                    Logger.LogInformation($"Group {groupModel.InstituteName}-{groupModel.GroupName} failed to update with message: {await response.Content.ReadAsStringAsync()}");
+                }
+            }
+            catch (Exception e)
+            {
+               Logger.LogError(e.Message, e);
+            }
+
         }
 
         private string GetSubjectType(string roomName)
