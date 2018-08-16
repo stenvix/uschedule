@@ -10,5 +10,7 @@ namespace USchedule.Domain.Managers
     {
         Task<IList<DepartmentModel>> GetByInstituteAsync(Guid instituteId);
         Task<DepartmentModel>  GetByTitleAsync(string departmentTitle);
+        Task<DepartmentModel> GetByShortTitleAsync(string shortTitle, Guid instituteId);
+        Task<DepartmentModel> GetEmpty(Guid instituteId);
     }
 }

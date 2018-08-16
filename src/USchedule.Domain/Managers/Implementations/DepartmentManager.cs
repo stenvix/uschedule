@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
@@ -25,6 +26,16 @@ namespace USchedule.Domain.Managers
         {
             var entity = await Repository.FindAsync(i => i.Title == departmentTitle);
             return Mapper.Map<DepartmentModel>(entity);
+        }
+
+        public Task<DepartmentModel> GetByShortTitleAsync(string shortTitle, Guid instituteId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<DepartmentModel> GetEmpty(Guid instituteId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

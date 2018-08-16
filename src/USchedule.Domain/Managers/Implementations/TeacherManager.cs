@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -21,18 +22,29 @@ namespace USchedule.Domain.Managers
             return await Repository.Exists(i => i.FirstName == firstName && i.LastName == lastName);
         }
 
-        public async Task CreateRangeAsync(IList<TeacherModel> teachers)
+        public async Task<IList<TeacherModel>> CreateRangeAsync(IList<TeacherModel> teachers)
         {
             var entities = Mapper.Map<IList<Teacher>>(teachers);
             var existed = await UnitOfWork.TeacherRepository.GetExistedAsync(entities);
             var entitiesToCreate = entities
-                .Where(i => existed.All(t => t.FirstName == i.FirstName && t.LastName == i.LastName)).ToList();
+                .Where(i => !existed.Any(t => t.FirstName == i.FirstName && t.LastName == i.LastName)).ToList();
 
             if (entitiesToCreate.Any())
             {
                 await UnitOfWork.TeacherRepository.CreateRangeAsync(entitiesToCreate);
                 await UnitOfWork.SaveChanges();
             }
+
+            existed.AddRange(entitiesToCreate);
+            return Mapper.Map<IList<TeacherModel>>(existed);
+        }
+
+        public async Task CreateOrUpdateSubjects(Guid teacherId, IEnumerable<Guid> subjectsIds)
+        {
+            var existed = await UnitOfWork.TeacherSubjectRepository.GetByTeacherAsync(teacherId);
+            var teacherSubjects = subjectsIds.Where(i => existed.All(s => s.Id != i)).Select(i => new TeacherSubject {SubjectId = i, TeacherId = teacherId});
+            await UnitOfWork.TeacherSubjectRepository.CreateRangeAsync(teacherSubjects);
+            await UnitOfWork.SaveChanges();
         }
     }
 }

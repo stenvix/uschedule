@@ -6,9 +6,8 @@ using USchedule.Models.Domain;
 
 namespace USchedule.Domain.Managers
 {
-    public interface IGroupManager: IManager<GroupModel>
+    public interface ISubjectManager : IManager<SubjectModel>
     {
-        Task<IList<GroupModel>> GetByInstituteAsync(Guid instituteId);
-        Task<GroupModel> GetByTitleAsync(string title);
+        Task<IList<SubjectModel>> CreateRangeAsync(Guid universityId, IList<SubjectModel> models);
     }
 }

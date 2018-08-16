@@ -10,7 +10,7 @@ namespace USchedule.Persistence.Configurations
         {
             builder.HasKey(i => i.Id);
             builder.Property(i => i.Title).IsRequired();
-            builder.HasIndex(i => new {i.Title, i.UniversityId});
+            builder.HasIndex(i => new {i.Title, i.UniversityId}).IsUnique();
             builder.HasOne(i => i.University).WithMany().HasForeignKey(i => i.UniversityId);
         }
     }

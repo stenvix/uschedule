@@ -17,6 +17,7 @@ namespace USchedule.Domain.Managers.Base
         private IGroupManager _groupManager;
         private ILessonManager _lessonManager;
         private ITeacherManager _teacherManager;
+        private ISubjectManager _subjectManager;
 
         #endregion
 
@@ -30,7 +31,8 @@ namespace USchedule.Domain.Managers.Base
         public IGroupManager GroupManager => _groupManager ?? (_groupManager = _serviceLocator.GetInstance<IGroupManager>(new LocatorParameter(typeof(IAppUnitOfWork), UnitOfWork)));
         public ILessonManager LessonManager => _lessonManager ?? (_lessonManager = _serviceLocator.GetInstance<ILessonManager>(new LocatorParameter(typeof(IAppUnitOfWork), UnitOfWork)));
         public ITeacherManager TeacherManager => _teacherManager ?? (_teacherManager = _serviceLocator.GetInstance<ITeacherManager>(new LocatorParameter(typeof(IAppUnitOfWork), UnitOfWork)));
-        
+        public ISubjectManager SubjectManager => _subjectManager ?? (_subjectManager = _serviceLocator.GetInstance<ISubjectManager>(new LocatorParameter(typeof(IAppUnitOfWork), UnitOfWork)));
+
         #endregion
 
         public ManagerStore(IServiceLocator serviceLocator)

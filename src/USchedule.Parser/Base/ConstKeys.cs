@@ -15,5 +15,7 @@
         public static string JobScheduler = "JobScheduler";
         public static string JobBaseUrl = "JobBaseUrl";
         public static string JobLogger = "JobLogger";
+        public static string TeacherFirstName => nameof(TeacherFirstName);
+        public static string TeacherLastName => nameof(TeacherLastName);
     }
 }

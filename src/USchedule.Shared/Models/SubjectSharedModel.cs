@@ -6,7 +6,8 @@ namespace USchedule.Shared.Models
     public class SubjectSharedModel
     {
         public string SubjectName { get; set; }
-        public string TeacherName { get; set; }
+        public string TeacherFirstName { get; set; }
+        public string TeacherLastName { get; set; }
         public string RoomNumber { get; set; }
         public string BuildingName { get; set; }
         public SubjectTypeShared SubjectType { get; set; }

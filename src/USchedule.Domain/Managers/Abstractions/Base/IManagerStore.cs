@@ -8,5 +8,6 @@
         IGroupManager GroupManager { get; }
         ILessonManager LessonManager { get; }
         ITeacherManager TeacherManager { get; }
+        ISubjectManager SubjectManager { get; }
     }
 }

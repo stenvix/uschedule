@@ -3,7 +3,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using NLog.Extensions.Logging;
 using USchedule.Parser.Executor;
-using USchedule.Parser.Implementations;
 
 namespace USchedule.Parser
 {

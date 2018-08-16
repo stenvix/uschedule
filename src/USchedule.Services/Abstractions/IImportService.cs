@@ -7,6 +7,7 @@ namespace USchedule.Services
 {
     public interface IImportService
     {
-        Task<BaseResponse> ImportDepartment(IList<DepartmentSharedModel> departments);
+        Task<BaseResponse> ImportDepartments(IList<DepartmentSharedModel> departments);
+        Task<BaseResponse> ImportInstitutes(IList<InstituteSharedModel> institutes);
     }
 }

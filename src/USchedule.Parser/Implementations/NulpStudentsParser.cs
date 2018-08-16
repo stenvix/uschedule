@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using Microsoft.Extensions.Logging;
@@ -13,24 +14,36 @@ using USchedule.Shared.Models;
 
 namespace USchedule.Parser
 {
-    public class NulpStudentsParser: BaseParser
+    public class NulpStudentsParser : BaseParser
     {
         private readonly string _apiUrl;
+        private ReaderWriterLockSlim _storageLock = new ReaderWriterLockSlim();
+        private Dictionary<string, InstituteSharedModel> _storage = new Dictionary<string, InstituteSharedModel>();
+        private int _jobCount = 0;
 
-        public NulpStudentsParser(string baseUrl, string apiUrl, ILogger<NulpStudentsParser> logger, ILogger<ParseJob> parseLogger):base(baseUrl, logger, parseLogger)
+
+        public NulpStudentsParser(string baseUrl, string apiUrl, ILogger<NulpStudentsParser> logger,
+            ILogger<ParseJob> parseLogger) : base(baseUrl, logger, parseLogger)
         {
             _apiUrl = apiUrl;
         }
-        
+
         private static Dictionary<string, DayOfWeek> WeekDays = new Dictionary<string, DayOfWeek>
         {
-            {"Пн", DayOfWeek.Monday},{"Вт", DayOfWeek.Tuesday}, {"Ср", DayOfWeek.Wednesday},
-            {"Чт", DayOfWeek.Thursday}, {"Пт", DayOfWeek.Friday}, {"Сб", DayOfWeek.Saturday}, {"Нд", DayOfWeek.Sunday } 
+            {"Пн", DayOfWeek.Monday},
+            {"Вт", DayOfWeek.Tuesday},
+            {"Ср", DayOfWeek.Wednesday},
+            {"Чт", DayOfWeek.Thursday},
+            {"Пт", DayOfWeek.Friday},
+            {"Сб", DayOfWeek.Saturday},
+            {"Нд", DayOfWeek.Sunday}
         };
-        
+
         public static Dictionary<string, SubjectTypeShared> SubjectTypes = new Dictionary<string, SubjectTypeShared>
         {
-            {"лаб.", SubjectTypeShared.Lab}, {"прак.", SubjectTypeShared.Practical}, {"лекція", SubjectTypeShared.Lecture}
+            {"лаб.", SubjectTypeShared.Lab},
+            {"прак.", SubjectTypeShared.Practical},
+            {"лекція", SubjectTypeShared.Lecture}
         };
 
         protected override IEnumerable<ParseTask> InitialTask(HtmlDocument document)
@@ -38,34 +51,41 @@ namespace USchedule.Parser
             var institutes = document.DocumentNode.SelectNodes("//select[@name='inst']/option");
             var semester = document.DocumentNode.SelectSingleNode("//select[@name='semestr']/option[@selected]");
             var semesterId = semester.GetAttributeValue("value", string.Empty);
-            var semesterPart = document.DocumentNode.SelectSingleNode("//select[@name='semest_part']/option[@selected]");
+            var semesterPart =
+                document.DocumentNode.SelectSingleNode("//select[@name='semest_part']/option[@selected]");
             var semesterPartId = semesterPart.GetAttributeValue("value", String.Empty);
             
             foreach (var institute in institutes)
             {
                 var taskArgs = new Dictionary<string, string>();
-                if (string.IsNullOrEmpty(institute.InnerText) || string.IsNullOrEmpty(semesterId)|| string.IsNullOrEmpty(semesterPartId))
+                if (string.IsNullOrEmpty(institute.InnerText) || string.IsNullOrEmpty(semesterId) ||
+                    string.IsNullOrEmpty(semesterPartId))
                 {
                     continue;
                 }
-                
+
                 var instituteId = institute.GetAttributeValue("value", string.Empty);
-                
+
                 taskArgs.Add(ConstKeys.InstituteName, institute.InnerHtml);
                 taskArgs.Add(ConstKeys.InstituteId, instituteId);
                 taskArgs.Add(ConstKeys.SemesterId, semesterId);
                 taskArgs.Add(ConstKeys.SemesterPartId, semesterPartId);
 
+                _storageLock.EnterWriteLock();
+                _storage.Add(institute.InnerHtml, new InstituteSharedModel {ShortTitle = institute.InnerHtml});
+                _storageLock.ExitWriteLock();
+
                 Logger.LogInformation($"Parsed institute: {institute.InnerText}");
-                
-                yield return new ParseTask(InstituteTask, $"?inst={instituteId}&group=&semestr={semesterId}&semest_part={semesterPartId}", taskArgs);
+
+                yield return new ParseTask(InstituteTask,
+                    $"?inst={instituteId}&group=&semestr={semesterId}&semest_part={semesterPartId}", taskArgs);
             }
         }
 
         private IEnumerable<ParseTask> InstituteTask(HtmlDocument document, Dictionary<string, string> taskArgs)
         {
             Logger.LogInformation($"Parse groups from institute {taskArgs[ConstKeys.InstituteName]}");
-            
+
             var groups = document.DocumentNode.SelectNodes("//select[@name='group']/option");
 
             foreach (var group in groups)
@@ -77,29 +97,35 @@ namespace USchedule.Parser
                     continue;
                 }
 
+                _storageLock.EnterWriteLock();
+                _jobCount++;
+                _storageLock.ExitWriteLock();
+
                 nextTaskArgs[ConstKeys.GroupId] = groupId;
                 nextTaskArgs[ConstKeys.GroupName] = group.InnerText;
                 
-                yield return new ParseTask(ScheduleTask, $"?inst={taskArgs[ConstKeys.InstituteId]}&group={groupId}&semestr=1&semest_part=1", nextTaskArgs);
+                yield return new ParseTask(ScheduleTask,
+                    $"?inst={taskArgs[ConstKeys.InstituteId]}&group={groupId}&semestr=1&semest_part=1", nextTaskArgs);
             }
         }
 
         private IEnumerable<ParseTask> ScheduleTask(HtmlDocument document, Dictionary<string, string> taskArgs)
         {
-            Logger.LogInformation($"Parse semester {taskArgs[ConstKeys.SemesterId]}, institute {taskArgs[ConstKeys.InstituteName]}, group {taskArgs[ConstKeys.GroupName]}");
+            Logger.LogInformation(
+                $"Parse semester {taskArgs[ConstKeys.SemesterId]}, institute {taskArgs[ConstKeys.InstituteName]}, group {taskArgs[ConstKeys.GroupName]}");
 
             var rows = document.DocumentNode.SelectNodes("//div[@id='stud']/table/tr");
             var weekDay = string.Empty;
             var groupSubjects = new List<SubjectSharedModel>();
-            
+
             var groupModel = new GroupSharedModel
             {
                 GroupName = taskArgs[ConstKeys.GroupName],
                 InstituteName = taskArgs[ConstKeys.InstituteName],
-                SemesterId =  taskArgs[ConstKeys.SemesterId],
-                SemesterPartId =  taskArgs[ConstKeys.SemesterPartId]
+                SemesterId = taskArgs[ConstKeys.SemesterId],
+                SemesterPartId = taskArgs[ConstKeys.SemesterPartId]
             };
-            
+
             foreach (var row in rows)
             {
                 var columns = row.SelectNodes("./td");
@@ -127,26 +153,39 @@ namespace USchedule.Parser
                     lessonNumber = columns.First().InnerText;
                     timeTable = columns.Last();
                 }
-                
-                var subjects = ParseTimeTable(timeTable, lessonNumber, weekDay);
-                groupSubjects.AddRange(subjects);
+
+         
+                    var subjects = ParseTimeTable(timeTable, lessonNumber, weekDay);
+                    groupSubjects.AddRange(subjects);
+
             }
 
             groupModel.Subjects = groupSubjects;
-            Task.Run(() => PostDataToServer(groupModel));
+
+            _storageLock.EnterWriteLock();
+            _storage[taskArgs[ConstKeys.InstituteName]].Groups.Add(groupModel);
+            
+            _jobCount--;
+            if (_jobCount == 0)
+            {
+                Task.Run(async () => await PostDataToServer());
+            }
+            _storageLock.ExitWriteLock();
+            
             yield break;
         }
 
         private IList<SubjectSharedModel> ParseTimeTable(HtmlNode html, string lessonNumber, string weekDay)
         {
             var result = new List<SubjectSharedModel>();
-            
+
             var weekRows = html.SelectNodes("./table/tr");
+
             for (int i = 0; i < weekRows.Count; i++)
             {
                 var weekRow = weekRows[i];
                 var subgroups = weekRow.SelectNodes("./td");
-                
+
                 for (int j = 0; j < subgroups.Count; j++)
                 {
                     int lesson = 0;
@@ -158,14 +197,15 @@ namespace USchedule.Parser
                     {
                         Console.WriteLine(e);
                     }
+
                     var subjectModel = new SubjectSharedModel
                     {
                         LessonNumber = lesson,
                         WeekNumber = weekRows.Count > 1 ? i : 0,
-                        SubgroupNumber = subgroups.Count > 1 ? j: 0,
+                        SubgroupNumber = subgroups.Count > 1 ? j : 0,
                         DayOfWeek = WeekDays[weekDay]
                     };
-                    
+
                     var subgroup = subgroups[j];
                     var subject = subgroup.SelectSingleNode("./div");
                     if (subject == null)
@@ -175,7 +215,7 @@ namespace USchedule.Parser
                         //For second week lesson is empty
                         continue;
                     }
-                    
+
                     var subjectName = subject.SelectSingleNode("./b").InnerHtml;
                     var teacherName = subject.SelectSingleNode("./i").InnerText;
                     string roomName;
@@ -191,12 +231,27 @@ namespace USchedule.Parser
 
                     roomName = roomName.Replace("\n", string.Empty);
 
+                    var splitTeacher = teacherName.Split(" ");
+                    string firstName;
+                    string lastName;
+                    if (splitTeacher.Length == 1)
+                    {
+                        lastName = splitTeacher[0];
+                        firstName = string.Empty;
+                    }
+                    else
+                    {
+                        lastName = splitTeacher[splitTeacher.Length - 2];
+                        firstName = splitTeacher[splitTeacher.Length - 1].Split(".")[0];
+                    }
+
                     subjectModel.SubjectName = subjectName;
-                    subjectModel.TeacherName = teacherName;
+                    subjectModel.TeacherFirstName = firstName;
+                    subjectModel.TeacherLastName = lastName;
                     subjectModel.BuildingName = GetBuildingName(roomName);
                     subjectModel.RoomNumber = GetRoomNumber(roomName);
                     subjectModel.SubjectType = SubjectTypes[GetSubjectType(roomName)];
-                    
+
                     result.Add(subjectModel);
                     Logger.LogInformation($"Parsed subject: {subjectName} {teacherName} {roomName}");
                 }
@@ -205,26 +260,26 @@ namespace USchedule.Parser
             return result;
         }
 
-        private async Task PostDataToServer(GroupSharedModel groupModel)
+        private async Task PostDataToServer()
         {
             try
             {
                 var httpClient = HttpClientFactory.Create();
-                var response = await httpClient.PostAsJsonAsync(_apiUrl, groupModel);
+                var response = await httpClient.PostAsJsonAsync(_apiUrl, _storage.Select(i => i.Value));
                 if (response.IsSuccessStatusCode)
                 {
-                    Logger.LogInformation($"Group {groupModel.InstituteName}-{groupModel.GroupName} successfully updated");
+                    Logger.LogInformation($"Data successfully updated");
                 }
                 else
                 {
-                    Logger.LogInformation($"Group {groupModel.InstituteName}-{groupModel.GroupName} failed to update with message: {await response.Content.ReadAsStringAsync()}");
+                    Logger.LogInformation(
+                        $"Data failed to update with message: {await response.Content.ReadAsStringAsync()}");
                 }
             }
             catch (Exception e)
             {
-               Logger.LogError(e.Message, e);
+                Logger.LogError(e.Message, e);
             }
-
         }
 
         private string GetSubjectType(string roomName)
@@ -243,8 +298,8 @@ namespace USchedule.Parser
         {
             var buildingPart = roomName.Split(",")[0];
             var dotIndex = buildingPart.LastIndexOf('.');
-            var building = buildingPart.Substring(0, dotIndex+1);
-            
+            var building = buildingPart.Substring(0, dotIndex + 1);
+
             return building.Trim();
         }
     }

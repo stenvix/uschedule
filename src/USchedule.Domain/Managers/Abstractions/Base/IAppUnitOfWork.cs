@@ -10,5 +10,7 @@ namespace USchedule.Domain.Managers.Base
         IUniversityRepository UniversityRepository { get; }
         ILessonRepository LessonRepository { get; }
         ITeacherRepository TeacherRepository { get; }
+        ISubjectRepository SubjectRepository { get; }
+        ITeacherSubjectRepository TeacherSubjectRepository { get; }
     }
 }
