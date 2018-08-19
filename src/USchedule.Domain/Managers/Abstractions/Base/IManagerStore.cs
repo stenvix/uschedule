@@ -9,5 +9,8 @@
         ILessonManager LessonManager { get; }
         ITeacherManager TeacherManager { get; }
         ISubjectManager SubjectManager { get; }
+        IBuildingManager BuildingManager { get; }
+        IRoomManager RoomManager { get; }
+        ILessonTimeManager LessonTimeManager { get; }
     }
 }

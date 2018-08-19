@@ -32,5 +32,17 @@ namespace USchedule.Domain.Managers
             existed.AddRange(entitiesToCreate);
             return Mapper.Map<IList<SubjectModel>>(existed);
         }
+
+        public async Task<SubjectModel> GetByTitleAsync(string title)
+        {
+            var entity = await Repository.FindAsync(i => i.Title == title);
+            return Mapper.Map<SubjectModel>(entity);
+        }
+
+        public async Task<IList<SubjectModel>> GetAllByTitleAsync(IEnumerable<string> subjectsTitles, Guid universityId)
+        {
+            var entities = await Repository.FindAllAsync(i => i.UniversityId == universityId && subjectsTitles.Contains(i.Title));
+            return Mapper.Map<IList<SubjectModel>>(entities);
+        }
     }
 }

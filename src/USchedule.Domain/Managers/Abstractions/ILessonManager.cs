@@ -9,5 +9,6 @@ namespace USchedule.Domain.Managers
     public interface ILessonManager: IManager<LessonModel>
     {
         Task<IList<LessonModel>> GetByGroupAsync(Guid groupId);
+        Task UpsertRangeAsync(IList<LessonModel> models, Guid groupId);
     }
 }

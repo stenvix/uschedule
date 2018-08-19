@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -7,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using USchedule.Parser.Base;
 using USchedule.Parser.Executor;
 using USchedule.Shared.Enums;
@@ -54,7 +56,7 @@ namespace USchedule.Parser
             var semesterPart =
                 document.DocumentNode.SelectSingleNode("//select[@name='semest_part']/option[@selected]");
             var semesterPartId = semesterPart.GetAttributeValue("value", String.Empty);
-            
+//            var count = 0;
             foreach (var institute in institutes)
             {
                 var taskArgs = new Dictionary<string, string>();
@@ -63,6 +65,13 @@ namespace USchedule.Parser
                 {
                     continue;
                 }
+
+//                if (count == 2)
+//                {
+//                    yield break;
+//                }
+//
+//                count++;
 
                 var instituteId = institute.GetAttributeValue("value", string.Empty);
 
@@ -168,7 +177,9 @@ namespace USchedule.Parser
             _jobCount--;
             if (_jobCount == 0)
             {
-                Task.Run(async () => await PostDataToServer());
+                var institutes = _storage.Select(i => i.Value).ToList();
+
+                Task.Run(async () => await PostDataToServer(institutes));
             }
             _storageLock.ExitWriteLock();
             
@@ -260,12 +271,18 @@ namespace USchedule.Parser
             return result;
         }
 
-        private async Task PostDataToServer()
+        public async Task PostDataToServer(IList<InstituteSharedModel> institutes, bool saveToFile = true)
         {
             try
             {
                 var httpClient = HttpClientFactory.Create();
-                var response = await httpClient.PostAsJsonAsync(_apiUrl, _storage.Select(i => i.Value));
+                var path = Path.Join(Directory.GetCurrentDirectory(), "students.json");
+                if (saveToFile)
+                {
+                    await File.WriteAllTextAsync(path, JsonConvert.SerializeObject(institutes));
+                }
+                Logger.LogInformation($"Posting data to {_apiUrl}");
+                var response = await httpClient.PostAsJsonAsync(_apiUrl, institutes);
                 if (response.IsSuccessStatusCode)
                 {
                     Logger.LogInformation($"Data successfully updated");

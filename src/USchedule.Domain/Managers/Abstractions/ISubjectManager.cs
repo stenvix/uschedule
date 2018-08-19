@@ -9,5 +9,7 @@ namespace USchedule.Domain.Managers
     public interface ISubjectManager : IManager<SubjectModel>
     {
         Task<IList<SubjectModel>> CreateRangeAsync(Guid universityId, IList<SubjectModel> models);
+        Task<SubjectModel> GetByTitleAsync(string title);
+        Task<IList<SubjectModel>> GetAllByTitleAsync(IEnumerable<string> subjectsTitles, Guid universityId);
     }
 }

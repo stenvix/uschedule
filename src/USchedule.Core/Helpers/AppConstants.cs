@@ -2,6 +2,6 @@
 {
     public static class AppConstants
     {
-        
+        public static string SystemEntity = "SYSTEM";
     }
 }

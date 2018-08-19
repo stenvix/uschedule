@@ -2,8 +2,8 @@
 {
     public enum SubjectTypeShared
     {
-        Practical,
-        Lab,
-        Lecture
+        Practical = 0,
+        Lab = 1,
+        Lecture = 2
     }
 }

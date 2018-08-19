@@ -9,7 +9,9 @@ namespace USchedule.Models.Profiles
         public RoomProfile()
         {
             CreateMap<Room, RoomModel>();
-            CreateMap<RoomModel, Room>();
+            CreateMap<RoomModel, Room>()
+                .ForMember(dest=>dest.BuildingId, src=>src.MapFrom(i=>i.Building.Id))
+                .ForMember(dest=>dest.Building, src=>src.Ignore());
         }
     }
 }

@@ -10,5 +10,7 @@ namespace USchedule.Core.Entities.Implementations
         
         public Building Building { get; set; }
         public University University { get; set; }
+        
+        public bool IsSystem { get; set; }
     }
 }

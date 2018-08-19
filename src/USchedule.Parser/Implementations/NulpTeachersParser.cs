@@ -45,7 +45,7 @@ namespace USchedule.Parser
                 {
                     continue;
                 }
-                
+
                 Logger.LogInformation($"Parsed department {department.InnerText}");
                 var departmentId = department.GetAttributeValue("value", String.Empty);
 
@@ -70,7 +70,7 @@ namespace USchedule.Parser
         private IEnumerable<ParseTask> TeacherTask(HtmlDocument document, Dictionary<string, string> taskArgs)
         {
             var teachers = document.DocumentNode.SelectNodes("//select[@name='fnsn']/option");
-           
+
             foreach (var teacher in teachers)
             {
                 if (string.IsNullOrEmpty(teacher.InnerText))
@@ -86,18 +86,21 @@ namespace USchedule.Parser
 
                 var args = new Dictionary<string, string>(taskArgs)
                 {
-                    [ConstKeys.TeacherFirstName] = teacherName[0].Trim(),
-                    [ConstKeys.TeacherLastName] = teacherName[1].Trim()
+                    [ConstKeys.TeacherLastName] = teacherName[0].Trim(),
+                    [ConstKeys.TeacherFirstName] = teacherName[1].Trim(),
                 };
                 _storageLock.EnterWriteLock();
                 _jobCount++;
                 _storageLock.ExitWriteLock();
-                yield return new ParseTask(SubjectTask, $"?kaf={taskArgs[ConstKeys.DepartmentId]}&fnsn={HttpUtility.UrlEncode(teacher.InnerHtml)}", args);
-            }   
+                yield return new ParseTask(SubjectTask,
+                    $"?kaf={taskArgs[ConstKeys.DepartmentId]}&fnsn={HttpUtility.UrlEncode(teacher.InnerHtml)}", args);
+            }
         }
 
         private IEnumerable<ParseTask> SubjectTask(HtmlDocument document, Dictionary<string, string> taskArgs)
         {
+            Logger.LogInformation(
+                $"Parsed teacher subjects {taskArgs[ConstKeys.TeacherLastName]} {taskArgs[ConstKeys.TeacherFirstName]} with department {taskArgs[ConstKeys.DepartmentName]}");
             var div = document.DocumentNode.SelectSingleNode("//div[@id='vykl']");
             var rows = document.DocumentNode.SelectNodes("//div[@id='vykl']/div/table/tr");
 
@@ -123,11 +126,13 @@ namespace USchedule.Parser
             _storageLock.EnterWriteLock();
             var department = _storage.First(i => i.Name == taskArgs[ConstKeys.DepartmentName]);
             department.Teachers.Add(teacherModel);
+            Logger.LogInformation($"Job {_jobCount} finished");
             _jobCount--;
             if (_jobCount == 0)
             {
                 Task.Run(() => PostDataToServer(_storage.ToList()));
             }
+
             _storageLock.ExitWriteLock();
 
             yield break;
@@ -154,12 +159,18 @@ namespace USchedule.Parser
             }
         }
 
-        private async Task PostDataToServer(IList<DepartmentSharedModel> department)
+        public async Task PostDataToServer(IList<DepartmentSharedModel> departments, bool saveToFile = true)
         {
             var httpClient = HttpClientFactory.Create();
             try
             {
-                var response = await httpClient.PostAsJsonAsync(_apiUrl, department);
+                var path = Path.Join(Directory.GetCurrentDirectory(), "teachers.json");
+                if (saveToFile)
+                {
+                    await File.WriteAllTextAsync(path, JsonConvert.SerializeObject(departments));
+                }
+                Logger.LogInformation($"Posting data to {_apiUrl}");
+                var response = await httpClient.PostAsJsonAsync(_apiUrl, departments);
                 if (response.IsSuccessStatusCode)
                 {
                     Logger.LogInformation($"Data successfully posted to server");

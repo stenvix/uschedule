@@ -5,6 +5,8 @@ namespace USchedule.Core.Entities.Implementations
 {
     public class Department: ShortTitleEntity
     {
+        public bool IsSystem { get; set; }
+        
         public Guid InstituteId { get; set; }
         public Guid? RoomId { get; set; }
         

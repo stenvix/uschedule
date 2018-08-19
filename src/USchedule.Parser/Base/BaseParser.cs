@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Threading.Tasks;
 using HtmlAgilityPack;
 using Microsoft.Extensions.Logging;
@@ -27,7 +28,9 @@ namespace USchedule.Parser.Base
 
         public async Task RunAsync()
         {
-            var factory = new StdSchedulerFactory();
+            var properties = new NameValueCollection();
+            properties["quartz.threadPool.threadCount"] = "2";
+            var factory = new StdSchedulerFactory(properties);
             var scheduler = await factory.GetScheduler();
             var tasks = InitialTask(await ParseJob.GetDocument(_baseUrl, ""));
 

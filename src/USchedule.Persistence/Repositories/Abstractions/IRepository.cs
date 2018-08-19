@@ -17,6 +17,7 @@ namespace USchedule.Persistence.Repositories
         Task<TEntity> CreateAsync(TEntity entity);
         Task CreateRangeAsync(IEnumerable<TEntity> entity);
         Task<TEntity> Update(TEntity entity);
+        Task UpdateRangeAsync(IEnumerable<TEntity> entities);
         Task DeleteAsync(Guid id);
         Task DeleteAsync(TEntity entity);
         Task<bool> Exists(Expression<Func<TEntity, bool>> filter);

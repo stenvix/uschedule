@@ -88,6 +88,12 @@ namespace USchedule.Persistence.Repositories
             });
         }
 
+        public Task UpdateRangeAsync(IEnumerable<TEntity> entities)
+        {
+            Set.UpdateRange(entities);
+            return Task.CompletedTask;
+        }
+
         public virtual async Task DeleteAsync(Guid id)
         {
             var entity = await Set.FindAsync(id);
