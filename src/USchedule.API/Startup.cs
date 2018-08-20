@@ -13,11 +13,9 @@ using NLog;
 using NLog.Extensions.Logging;
 using USchedule.API.Providers;
 using USchedule.Core.Enums;
-using USchedule.Models.Domain;
 using USchedule.Models.Domain.Base;
 using USchedule.Models.DTO;
 using USchedule.Persistence.Database;
-using ILogger = NLog.ILogger;
 
 namespace USchedule.API
 {
@@ -53,7 +51,7 @@ namespace USchedule.API
             }
 
             ConfigureLogging(serviceProvider.GetService<ILoggerFactory>());
-            serviceProvider.GetService<DataContext>().Initialize(serviceProvider.GetService<ILogger<DataContext>>());
+            serviceProvider.GetService<DataContext>().Initialize(serviceProvider.GetService<ILogger<DataContext>>(), env.IsDevelopment());
 
             app.UseMvc();
         }
@@ -90,7 +88,7 @@ namespace USchedule.API
                 case DatabaseProvider.Postgres:
                 {
                     services.AddEntityFrameworkNpgsql()
-                        .AddDbContext<DataContext>(options => options.UseNpgsql(connection));
+                        .AddDbContext<DataContext>(options => options.UseNpgsql(connection, x=>x.MigrationsAssembly("USchedule.Persistence")));
                     break;
                 }
                 case DatabaseProvider.InMemory:

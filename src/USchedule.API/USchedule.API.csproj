@@ -50,4 +50,9 @@
     <_ContentIncludedByDefault Remove="out\USchedule.API.deps.json" />
     <_ContentIncludedByDefault Remove="out\USchedule.API.runtimeconfig.json" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="hosting.jscon.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

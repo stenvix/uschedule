@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using USchedule.Core.Entities.Implementations;
@@ -10,10 +11,10 @@ namespace USchedule.Persistence.Database
 {
     public static class DataInitializer
     {
-        public static void Initialize(this DataContext context, ILogger<DataContext> logger)
+        public static void Initialize(this DataContext context, ILogger<DataContext> logger, bool IsDevelopment)
         {
-            if (!context.Database.EnsureCreated())
-            {
+            if (!IsDevelopment || !context.Database.EnsureCreated())
+            {    
                 return;
             }
 
