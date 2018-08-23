@@ -1,1 +1,4 @@
-{}
+{
+    "urls": "http://*:5000",
+    "environment": "DEVELOPMENT"
+  }
