@@ -1,4 +1,4 @@
 {
     "urls": "http://*:5000",
-    "environment": "DEVELOPMENT"
+    "environment": "Development"
   }
